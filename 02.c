@@ -14,6 +14,6 @@ int main()
 		exchange=a;a=c;c=exchange; exchange=b;b=c;c=exchange;}
 	  else if(b>c){
 		 exchange=b;b=c;c=exchange;}
-	printf("输出三个数：%d %d %d\n",a,b,c);
+	printf("鎸夐『搴忚緭鍑猴細%d %d %d\n",a,b,c);
 return 0;
 }
