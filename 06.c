@@ -2,7 +2,7 @@
 int main()
 {
 	char ch; int n = 0, i = 1, j = 1, q = 1;
-	printf("请输入一个大写字母：\n");
+	printf("璇疯緭鍏ヤ竴涓ぇ鍐欏瓧姣嶏細\n");
 	scanf(" %c", &ch);
 	n = ch - 'A'+1;
 	for (i = 1; i <= n;i++ )
