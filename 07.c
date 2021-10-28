@@ -1,25 +1,46 @@
-#include<stdio.h>
+#include <stdio.h>
 int main()
 {
-	char ch; int n = 0, i = 1, j = 1, q = 1;
-	printf("������һ����д��ĸ��\n");
-	scanf(" %c", &ch);
-	n = ch - 'A'+1;
-	for (i = 1; i <= n;i++ )
-	{
-		for (j = 1; j<= (n-i); j++)
-		{
-			putchar(' ');
-		}
-		for (j=j,q=1;j <= n;j++,q++)
-		{
-			printf("%c",'A'+ q - 1);
-		}
-		for (j=j,q=1;j <= n+i-1;j++,q++)
-		{
-			printf("%c",'A'+ i - 1 - q);
-		}
-		putchar('\n');
-	}
-	return 0;
+    int a = 0, i = 0; int x = 0;
+    do
+    {
+        printf("请输入需要分解的正整数:\n");
+        scanf("%d",&x);
+        if (x == 0)
+        {
+            printf("谢谢使用，再见!\n");
+            break;
+        }
+        printf("分解质因数的结果为:%d=",x);
+        while (x>1)
+        {
+            if (x%2 == 0)
+            {
+                x = x/2;
+                if (x==1)
+                    printf("2\n");
+                else
+                    printf("2*");
+            }
+            else
+            {
+                for (i = 3; i <= x/2; i+=2)
+                {
+                    a = x%i;
+                    if (a == 0)
+                    {
+                        printf("%d*",i);
+                        x = x/i;
+                        break;
+                    }
+                }
+            }
+            if(i > x/2)
+            {
+                printf("%d\n",x);
+                break;
+            }
+        }
+    }while(1);
+    return 0;
 }
