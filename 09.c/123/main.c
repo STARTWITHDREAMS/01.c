@@ -1,35 +1,40 @@
 #include<stdio.h>
+double POW(int x)
+{
+    int i = 3;
+    double mul = 4.0;
+    for (i = 3; i <= x; i++)
+    {
+        mul = mul * 2;
+    }
+    return mul;
+}
+double MOD(double x)
+{
+    int i;
+    for (i = 2; i < x / 2; i++)
+    {
+        if (x / i == (long long)(x / i))
+            return 0;
+    }
+    return 1;
+}
 int main()
 {
-    int x = 0; int a = 23; int b = 0; int c = 0;
-    printf("这里是23根火柴游戏!!\n注意：最大移动火柴数目为三根\n");
-    while (1)
+    int n = 0;
+    double mul = 0.0;
+    int i = 2;
+    int count = 0;
+    printf("Input:\n");
+    scanf("%d", n);
+    for (i = 2; i <= n; i++)
     {
-        do
+        mul = POW(i) - 1;
+        if (MOD(mul))
         {
-            printf("请输入移动的火柴数目:\n");
-            scanf("%d", &x);
-            if (x > 3)
-                printf("对不起！您输入了不合适的数目，请点击任意键重新输入\n");
-        }
-        while (0 >= x || x > 3);
-        c = a - x;
-        if (c <= 0)
-        {
-            printf("您移动的火柴数目为:%d\n您移动后剩下的火柴数目为:%d\n对不起!您输了!\n", x, c);
-            break;
-        }
-        b = (c - 1) % 4;
-        if (b == 0)
-           b = 1;
-        a = a - b - x;
-        printf("您移动的火柴数目为:%d\n您移动后剩下的火柴数目为：%d\n计算机移动的火柴数目为:%d\n计算机移动后剩下的火柴数目为:%d\n", x, c, b, a);
-        if (a <= 0)
-        {
-            printf("恭喜您！您赢了!\n");
-            break;
+            printf("2^%d-1=%.0lf\n", i, mul);
+            count++;
         }
     }
-    return 0;
-    }
-
+    printf("count=%d\n", count);
+}
