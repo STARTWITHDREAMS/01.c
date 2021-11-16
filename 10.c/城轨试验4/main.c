@@ -1,36 +1,24 @@
+
+//马路移树问题，洛谷p1047
 #include<stdio.h>
-double MUL(int x)
-{
-    int i = 1; double a = 1.0;
-    for (i = 1; i <= x; i++)
-    {
-        a = a*10;
-    }
-    return a;
-}
 int main()
 {
-    double x = 0.0; double a = 0.0; int p = 0; double s = 0; int q = 0; int i = 1;
-    printf("输入一个浮点数:\n");
-    scanf("%lf", &x);
-    a = x;
-    while (a != (int)(a))
+    int L = 0; int m = 0; int tree[10000] = {0}; int i = 0; int j = 0; int a; int b;
+    scanf("%d%d",&L,&m);
+    for (i = 1;i <= m ;i++ )
     {
-        a = a*10;
-        q++;
-    }
-    while (p != q)
-           {
-               s = s*10 + (int)a % 10;
-               p++;
-               a = (int)(a/10);
-           }
-    while (a)
+        scanf("%d%d",&a,&b);
+        for (j = a; j <= b; j++)
         {
-            s = s + (int)a%10/MUL(i);
-            a = (int)(a/10);
-            i++;
+            tree[j] = 1;
         }
-    printf("%f",s);
+    }
+    int ans = L + 1;
+    for (i = 0; i <= L; i++)
+    {
+        if (tree[i] == 1)
+            ans = ans - 1;
+    }
+    printf("%d\n",ans);
     return 0;
 }
