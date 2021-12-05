@@ -1,3 +1,4 @@
+//洛谷p1044
 #include<stdio.h>
 int Fun(int n)
 {
@@ -14,3 +15,4 @@ int main()
     printf("%d\n",Fun(n));
     return 0;
 }
+
