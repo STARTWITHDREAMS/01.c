@@ -1,19 +1,17 @@
-//洛谷p1028
+//洛谷p1044栈
 #include<stdio.h>
-int a[100] = {0,1,0};
-int Num(int n)
+int Fun(int n)
 {
-    int sum = 1;
-    if(a[n]!=0) return a[n];
-    else
-        for(int i = n/2; i >= 1; i--)
-            sum+=Num(i);
-    return a[n] = sum;
+    int sum = 0;
+    if(n == 0) return 1;
+    for(int i = 0; i <= n - 1; i++)
+        sum += Fun(i) * Fun(n-1-i);
+    return sum;
 }
 int main()
 {
     int n = 0;
     scanf("%d",&n);
-    printf("%d\n",Num(n));
+    printf("%d\n",Fun(n));
     return 0;
 }
