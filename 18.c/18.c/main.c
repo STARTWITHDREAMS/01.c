@@ -17,3 +17,4 @@ int main()
     printf("%d\n",Num(n));
     return 0;
 }
+
