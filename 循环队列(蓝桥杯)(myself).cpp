@@ -41,7 +41,7 @@ bool out(string type){
 }
 string gethead(string type){
     if (type == "V") {
-        if (Vhead != Ntail)
+        if (Vhead != Vtail)
             return Vqueue[Vhead];
         else
             return "";
