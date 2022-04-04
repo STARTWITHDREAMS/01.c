@@ -1,86 +1,68 @@
-#include<iostream>
+//#include<bits/stdc++>
+#include <iostream>
+#include<vector>
+#include<queue>
+#include<cstring>
 using namespace std;
-const int maxn = 10005;
-string Vqueue[maxn];
-int Vtail,Vhead;
-string Nqueue[maxn];
-int Ntail,Nhead;
-bool in(string name,string type){
-    if (type == "V"){
-        if ((Vtail + 1) % maxn == Vhead)
-            return false;
-        else {
-            Vqueue[Vtail] = name;
-            Vtail = (Vtail + 1) % maxn;
-        }
-    }
-    else{
-        if ((Ntail + 1) % maxn == Nhead)
-            return false;
-        else {
-            Nqueue[Ntail] = name;
-            Ntail = (Ntail + 1) % maxn;
-        }
-    }
-    return true;
+int p[33];
+int len;
+vector<int>b[10];
+queue<int>c;
+queue<int>empty1;
+string s;
+int nums[16][2];
+int k;
+int a[32];
+int ans[32];
+int vis[11];
+void mul(int x){
+	int dw = 0;
+	for(int i = 31; i >= 1;--i){
+		p[i] = p[i] * x + dw;
+		dw = p[i]/10;
+		p[i] = p[i]%10;
+	}
 }
-
-bool out(string type){
-    if (type == "V") {
-        if (Vtail == Vhead)
-            return false;
-        else
-            Vhead = (Vhead + 1) % maxn;
-    }
-    else{
-        if (Ntail == Nhead)
-            return false;
-        else
-            Nhead = (Nhead + 1) % maxn;
-    }
-    return true;
+void deal(string x){
+	for(int i = 0; i < len;++i)
+	a[i] = s[i]-'0';
 }
-
-string  gethead(string type){
-    if (type == "V") {
-        if (Vhead != Vtail)
-            return Vqueue[Vhead];
-        else
-            return "";
-    }
-    else{
-        if (Nhead != Ntail)
-            return Nqueue[Nhead];
-        else
-            return "";
-    }
+void bfs(int x){
+	while(!c.empty()){
+		int t = c.front();
+		c.pop();
+		ans[x]++;
+		for(int i = 0; i < b[t].size();++i){
+			if(!vis[b[t][i]]){
+			c.push(b[t][i]);
+			vis[b[t][i]] = 1;
+		}
+		}
+	}
 }
-int main()
-{
-    int M;
-    string dec, name, type;
-    cin >> M;
-    while (M--) {
-        cin >> dec;
-        if (dec == "IN"){
-            cin >> name >> type;
-            in(name, type);
-        }
-        else{
-            cin >> type;
-            out(type);
-        }
-    }
-
-    while (gethead("V") != "")
-    {
-        cout << gethead("V") << endl;
-        out("V");
-    }
-    while (gethead("N") != "")
-    {
-        cout << gethead("N") << endl;
-        out("N");
-    }
-    return 0;
+int main(){
+	int m,n;
+	long long sum = 1;
+   cin >> s >> k;
+   len = s.length();
+	for(int i = 1; i <= k;++i){
+		cin >> m >> n;
+		b[m].push_back(n);
+	}
+	deal(s);
+	for(int i = 0; i < len;++i){
+		vis[a[i]] = 1;
+		c.push(a[i]);
+		bfs(i);
+		c = empty1;
+		memset(vis,0,sizeof(vis));
+	}
+	p[31] = 1;
+	for(int i = 0; i < len;++i)
+   			mul(ans[i]);
+   	int l = 1;
+   	for(;p[l] == 0;++l);
+   	for(int i = l; i <= 31;++i)
+   	cout << p[i];
+	return 0;
 }
